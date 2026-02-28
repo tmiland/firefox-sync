@@ -53,10 +53,10 @@ read -e -p "Syncstorage image tag [${DEFAULT_SYNCSTORAGE_IMAGE_TAG}]: " SYNCSTOR
 SYNCSTORAGE_IMAGE_TAG=${SYNCSTORAGE_IMAGE_TAG:-${DEFAULT_SYNCSTORAGE_IMAGE_TAG}}
 
 # random passwords
-MARIADB_TOKENSERVER_PASSWORD=$(generate_random_string 24)
-MARIADB_SYNCSTORAGE_PASSWORD=$(generate_random_string 24)
-SYNC_MASTER_SECRET=$(generate_random_string 24)
-METRICS_HASH_SECRET=$(generate_random_string 24)
+MARIADB_TOKENSERVER_PASSWORD=$(generate_random_string 32)
+MARIADB_SYNCSTORAGE_PASSWORD=$(generate_random_string 32)
+SYNC_MASTER_SECRET=$(generate_random_string 64)
+METRICS_HASH_SECRET=$(generate_random_string 64)
 
 # prepare .env file
 cp ${SCRIPT_DIR}/.env-example ${SCRIPT_DIR}/.env
