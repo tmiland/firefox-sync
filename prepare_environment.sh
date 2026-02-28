@@ -29,27 +29,27 @@ SYNCSTORAGE_DOMAIN=${SYNCSTORAGE_DOMAIN:-${DOMAIN_EXAMPLE}}
 
 # compose dir
 CURRENT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
-read -e -p "Enter full path for the docker-compose file [${CURRENT_DIR}]: " SCRIPT_DIR
+read -e -rp "Enter full path for the docker-compose file [${CURRENT_DIR}]: " SCRIPT_DIR
 SCRIPT_DIR=${SCRIPT_DIR:-${CURRENT_DIR}}
 
 # listening port
 DEFAULT_CONTAINER_EXPORT_PORT=5000
-read -e -p "Listening port for syncstorage-rs [${DEFAULT_CONTAINER_EXPORT_PORT}]: " CONTAINER_EXPORT_PORT
+read -e -rp "Listening port for syncstorage-rs [${DEFAULT_CONTAINER_EXPORT_PORT}]: " CONTAINER_EXPORT_PORT
 CONTAINER_EXPORT_PORT=${CONTAINER_EXPORT_PORT:-${DEFAULT_CONTAINER_EXPORT_PORT}}
 
 # max users
 DEFAULT_MAX_USERS=1
-read -e -p "Max allowed users [${DEFAULT_MAX_USERS}]: " MAX_USERS
+read -e -rp "Max allowed users [${DEFAULT_MAX_USERS}]: " MAX_USERS
 MAX_USERS=${MAX_USERS:-${DEFAULT_MAX_USERS}}
 
 # docker user
 DEFAULT_DOCKER_USER=${USER}
-read -e -p "Docker user [${DEFAULT_DOCKER_USER}]: " DOCKER_USER
+read -e -rp "Docker user [${DEFAULT_DOCKER_USER}]: " DOCKER_USER
 DOCKER_USER=${DOCKER_USER:-${DEFAULT_DOCKER_USER}}
 
 # syncstorage image tag
 DEFAULT_SYNCSTORAGE_IMAGE_TAG=latest
-read -e -p "Syncstorage image tag [${DEFAULT_SYNCSTORAGE_IMAGE_TAG}]: " SYNCSTORAGE_IMAGE_TAG
+read -e -rp "Syncstorage image tag [${DEFAULT_SYNCSTORAGE_IMAGE_TAG}]: " SYNCSTORAGE_IMAGE_TAG
 SYNCSTORAGE_IMAGE_TAG=${SYNCSTORAGE_IMAGE_TAG:-${DEFAULT_SYNCSTORAGE_IMAGE_TAG}}
 
 # random passwords
