@@ -47,6 +47,11 @@ DEFAULT_DOCKER_USER=${USER}
 read -e -p "Docker user [${DEFAULT_DOCKER_USER}]: " DOCKER_USER
 DOCKER_USER=${DOCKER_USER:-${DEFAULT_DOCKER_USER}}
 
+# syncstorage image tag
+DEFAULT_SYNCSTORAGE_IMAGE_TAG=latest
+read -e -p "Syncstorage image tag [${DEFAULT_SYNCSTORAGE_IMAGE_TAG}]: " SYNCSTORAGE_IMAGE_TAG
+SYNCSTORAGE_IMAGE_TAG=${SYNCSTORAGE_IMAGE_TAG:-${DEFAULT_SYNCSTORAGE_IMAGE_TAG}}
+
 # random passwords
 MARIADB_TOKENSERVER_PASSWORD=$(generate_random_string 24)
 MARIADB_SYNCSTORAGE_PASSWORD=$(generate_random_string 24)
@@ -62,6 +67,7 @@ apply_sed ${SCRIPT_DIR}/.env "s|METRICS_HASH_SECRET=.*|METRICS_HASH_SECRET=${MET
 apply_sed ${SCRIPT_DIR}/.env "s|SYNCSTORAGE_DOMAIN=.*|SYNCSTORAGE_DOMAIN=https://${SYNCSTORAGE_DOMAIN}|"
 apply_sed ${SCRIPT_DIR}/.env "s|CONTAINER_EXPORT_PORT=.*|CONTAINER_EXPORT_PORT=${CONTAINER_EXPORT_PORT}|"
 apply_sed ${SCRIPT_DIR}/.env "s|MAX_USERS=.*|MAX_USERS=${MAX_USERS}|"
+apply_sed "${SCRIPT_DIR}"/.env "s|SYNCSTORAGE_IMAGE_TAG=.*|SYNCSTORAGE_IMAGE_TAG=${SYNCSTORAGE_IMAGE_TAG}|"
 
 # prepare nginx example
 cp ${SCRIPT_DIR}/config/nginx/syncstorage-rs-example.conf ${SCRIPT_DIR}/config/nginx/syncstorage-rs.conf
