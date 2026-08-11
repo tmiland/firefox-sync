@@ -24,7 +24,8 @@ env:
   SERVICE_CHANGELOG_PATH: CHANGELOG.md
   # specific for this component
   IMAGE_TAGS: mysql
-  DATABASE_BACKEND: mysql
+  SYNCSTORAGE_DATABASE_BACKEND: mysql
+  TOKENSERVER_DATABASE_BACKEND: mysql
 
 jobs:
 
@@ -231,7 +232,8 @@ jobs:
           outputs: type=image,"name=${{ env.REPOSITORY_REGISTRY }}/${{ env.REPOSITORY_FULL_NAME }}",name-canonical=true,push=true
           context: ${{ steps.prepare-variables.outputs.code_dockerfile_path }}
           build-args: |
-            DATABASE_BACKEND=${{ env.DATABASE_BACKEND }}
+            SYNCSTORAGE_DATABASE_BACKEND=${{ env.SYNCSTORAGE_DATABASE_BACKEND }}
+            TOKENSERVER_DATABASE_BACKEND=${{ env.TOKENSERVER_DATABASE_BACKEND }}
           cache-from: type=registry,ref=${{ env.REPOSITORY_REGISTRY }}/${{ env.REPOSITORY_FULL_NAME }}:buildcache-${{ env.SERVICE_NAME }}-${{ steps.image_name.outputs.docker_image_name_suffix }}-${{ needs.prepare-env.outputs.service_tag }}-${{ steps.prepare-platform-pair.outputs.platform_pair }}
           cache-to: type=registry,ref=${{ env.REPOSITORY_REGISTRY }}/${{ env.REPOSITORY_FULL_NAME }}:buildcache-${{ env.SERVICE_NAME }}-${{ steps.image_name.outputs.docker_image_name_suffix }}-${{ needs.prepare-env.outputs.service_tag }}-${{ steps.prepare-platform-pair.outputs.platform_pair }},mode=max
 
