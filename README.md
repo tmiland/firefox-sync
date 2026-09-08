@@ -2,6 +2,14 @@
 
 The purpose of this repository is to provide a docker-compose that can be used to self host what otherwise Firefox sync would send to Mozilla's servers.
 
+## About this fork
+
+This fork of [porelli/firefox-sync](https://github.com/porelli/firefox-sync) keeps the deployment kit working in production and carries fixes not yet merged upstream:
+
+- **`db_init.sh` fix — fresh deployments 503 with "unable to get a node"**: the init script hardcoded `nodes.service = '1'`, but the upstream migrations guarantee `sync-1.5` lands at id **3** on every fresh database — so no login could ever resolve a node. The service id is now resolved dynamically (upstream PR [#23](https://github.com/porelli/firefox-sync/pull/23)).
+- **syncstorage-rs 0.23+ build-args**: upstream renamed `DATABASE_BACKEND` to `SYNCSTORAGE_DATABASE_BACKEND` / `TOKENSERVER_DATABASE_BACKEND` (default spanner); the image workflow now passes both, keeping pre-0.23 tags working (upstream PR [#24](https://github.com/porelli/firefox-sync/pull/24)).
+- MySQL-backend images published as [ghcr.io/tmiland/firefox-sync](https://github.com/tmiland/firefox-sync/pkgs/container/firefox-sync/versions) — weekly rebuilds, running in production.
+
 ## Disclaimer
 
 - ⚠️ The project is under development
