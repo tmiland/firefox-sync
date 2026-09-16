@@ -1,4 +1,6 @@
 # firefox-sync
+[![Sponsor @tmiland](https://img.shields.io/badge/Sponsor-%40tmiland-ea4aaa?logo=githubsponsors&logoColor=white)](https://github.com/sponsors/tmiland)
+
 
 Self-host Mozilla Firefox Sync with docker-compose — syncstorage-rs and the
 tokenserver stack backed by **MariaDB** instead of Google Spanner.
